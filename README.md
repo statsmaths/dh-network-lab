@@ -56,14 +56,25 @@ should be ready to go.
 
 ### Step 4: Select topics of interest
 
+Next, you will want to select which topics of law to visualize. Here, for the demo,
+I'll select the two codes regarding de-segregation:
+
 ```{r}
 select_topic_cites(20040, 20050)
 ```
 
+For a list of all the available codes, see [this table](https://github.com/statsmaths/dh_network_lab/blob/master/issue_codes.csv).
+You can select as many issues as you want by seperating them with commas in the
+call to the function `select_topic_cites`. You can also re-run just this function
+with new codes to modify the plots in the next step.
+
 ### Step 5: Plot the data
 
+You can now create an interactive plot of your network!
 There are several functions available for plotting the network using
-different coloring schemes for the nodes. Try these one at a time.
+different coloring schemes for the nodes. The graph shows links between
+two cases where one case cited the other case in the decision.
+Try these one at a time:
 
 ```{r}
 plot_centrality()
@@ -74,16 +85,33 @@ plot_vote()
 plot_gatekeeper()
 ```
 
-The gatekeeper visualization attempts to find nodes that links disparate
-parts of the citation network.
+When you run the function, it should open a web browser with an interactive
+graph. Hovoring over a node will show the name of the case, the year of the
+case, and an id called USID. The latter is useful to looking up the case online.
+You should find that the most central cases have lots of third-party information
+about them. Wikipedia is a good place to look if a link shows up. For all cases,
+the USID search should at a minimum turn up the original decision text.
+
+The meaning of most of these should be straight-forward. The vote plot shows
+how many justices dissented with the decision. The clusters are
+algorithmically learning groupings of nodes that are are cited by one another.
+The gatekeeper visualization attempts to find nodes that links disparate parts
+of the citation network.
 
 ### Step 6: Co-citations
+
+Finally, you can also run the function `select_topic_cocites` instead of 
+`select_topic_cites`, as such:
 
 ```{r}
 select_topic_cocites(20040, 20050)
 ```
 
-
+Graphics made after calling this data will link any two cases that were 
+both cited by a third case a minimum of 9 different times. This is called
+a co-citation graph (rather than a citation graph). Compare this with the
+citation graph; which one do you think tells a more cohesive or interesting
+story? Can you see different patterns in the two
 
 
 
