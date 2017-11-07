@@ -41,7 +41,7 @@ directly from within R. No need to download any files or copy large amount of co
 Simply run the following line in R to download the required functions:
 
 ```{r}
-source("https://statsmaths.github.io/dh_network_lab/funs.R")
+source("https://statsmaths.github.io/dh-network-lab/funs.R")
 ```
 
 Once that is done, the next bit of code will load the entire corpus of Supreme
