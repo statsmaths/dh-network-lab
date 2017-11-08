@@ -47,6 +47,8 @@ load_data <- function() {
                                       ))
   vol$G <- graph.edgelist(as.matrix(scotus_edges), directed=FALSE)
   vol$G_co <- graph.edgelist(as.matrix(scotus_edges_co[,-3]), directed=FALSE)
+  
+  qplot(0,0)
 }
 
 select_topic_cites <- function(...) {
