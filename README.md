@@ -77,11 +77,11 @@ two cases where one case cited the other case in the decision.
 Try these one at a time:
 
 ```{r}
-plot_centrality()
-plot_issue()
-plot_cluster()
 plot_year()
 plot_vote()
+plot_issue()
+plot_centrality()
+plot_cluster()
 plot_gatekeeper()
 ```
 
@@ -92,11 +92,17 @@ You should find that the most central cases have lots of third-party information
 about them. Wikipedia is a good place to look if a link shows up. For all cases,
 the USID search should at a minimum turn up the original decision text.
 
-The meaning of most of these should be straight-forward. The vote plot shows
-how many justices dissented with the decision. The clusters are
-algorithmically learning groupings of nodes that are are cited by one another.
-The gatekeeper visualization attempts to find nodes that links disparate parts
-of the citation network.
+The following are ways to color code the network based on metadata:
+
+- **Year**: Color coded the node according to the year of the case. 
+- **Issue**: Color coded the node according to the area of law. 
+- **Vote**: Colod coded based on the number of justices casting a dissenting votes for the case.
+
+The following are calculations based on network properties: 
+
+- **Centrality**:  Identifies the most important node/ vertices in a network.   
+- **Cluster**: A set of nodes that cluster together within a larger network. They are also known as communities. There can be muliple communities in one network.  The clusters are algorithmically learning groupings of nodes that are are cited by one another.
+- **Gatekeeper**: Find nodes that links disparate parts of the citation network. They tend to be the node or set of nodes that connect different communities.  
 
 ### Step 6: Co-citations
 
