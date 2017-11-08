@@ -48,7 +48,6 @@ load_data <- function() {
   vol$G <- graph.edgelist(as.matrix(scotus_edges), directed=FALSE)
   vol$G_co <- graph.edgelist(as.matrix(scotus_edges_co[,-3]), directed=FALSE)
   
-  qplot(0,0)
 }
 
 select_topic_cites <- function(...) {
@@ -148,6 +147,8 @@ plot_centrality <- function() {
         geom_text(aes(label = YEAR), alpha = 0, size = 4) +
         theme_void()
 
+  plot(p)
+  
   suppressMessages(ggplotly(p = p, tooltip = c("label"), layerData = 3))
 }
 
@@ -160,6 +161,8 @@ plot_issue <- function() {
         geom_text(aes(label = YEAR), alpha = 0, size = 4) +
         theme_void()
 
+  plot(p)
+  
   suppressMessages(ggplotly(p = p, tooltip = c("label"), layerData = 3))
 }
 
@@ -172,6 +175,8 @@ plot_cluster <- function() {
         geom_text(aes(label = YEAR), alpha = 0, size = 4) +
         theme_void()
 
+  plot(p)
+  
   suppressMessages(ggplotly(p = p, tooltip = c("label"), layerData = 3))
 }
 
@@ -185,6 +190,8 @@ plot_year <- function() {
         geom_text(aes(label = YEAR), alpha = 0, size = 4) +
         theme_void()
 
+  plot(p)
+  
   suppressMessages(ggplotly(p = p, tooltip = c("label"), layerData = 3))
 }
 
@@ -199,6 +206,8 @@ plot_vote <- function() {
         theme_void() +
         labs(color = "Number of Dissenting Votes")
 
+  plot(p)
+  
   suppressMessages(ggplotly(p = p, tooltip = c("label"), layerData = 3))
 }
 
@@ -212,5 +221,7 @@ plot_gatekeeper <- function() {
         geom_text(aes(label = YEAR), alpha = 0, size = 4) +
         theme_void()
 
+  plot(p)
+  
   suppressMessages(ggplotly(p = p, tooltip = c("label"), layerData = 3))
 }
