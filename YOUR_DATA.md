@@ -56,8 +56,8 @@ are called "nodes.csv" and "edges.csv" (capitalization matters!).
 
 For examples of what the files should look like, see here:
 
-- [nodes.csv]()
-- [edges.csv]()
+- [nodes.csv](https://github.com/statsmaths/dh-network-lab/blob/master/edges.csv)
+- [edges.csv](https://github.com/statsmaths/dh-network-lab/blob/master/nodes.csv)
 
 ### Step 5: Read the data into R
 
@@ -80,57 +80,28 @@ If no errors appear (warnings are fine) you are all set.
 ### Step 6: Plot the data
 
 You can now create an interactive plot of your network!
-To see available plots
-
-
-
-There are several functions available for plotting the network using
-different coloring schemes for the nodes. The graph shows links between
-two cases where one case cited the other case in the decision.
-Try these one at a time:
+To see available plots, run the command:
 
 ```{r}
-plot_year()
-plot_vote()
-plot_issue()
-plot_centrality()
-plot_cluster()
-plot_gatekeeper()
+list_plots()
 ```
 
-When you run the function, it should open a web browser with an interactive
-graph. Hovoring over a node will show the name of the case, the year of the
-case, and an id called USID. The latter is useful to looking up the case online.
-You should find that the most central cases have lots of third-party information
-about them. Wikipedia is a good place to look if a link shows up. For all cases,
-the USID search should at a minimum turn up the original decision text.
+The list of plots should include derived network measures
+as well as the metadata you included in the raw node data.
 
-The following are ways to color code the network based on metadata:
-
-- **Year**: Color coded the node according to the year of the case. 
-- **Issue**: Color coded the node according to the area of law. 
-- **Vote**: Colod coded based on the number of justices casting a dissenting votes for the case.
-
-The following are calculations based on network properties: 
-
-- **Centrality**:  Identifies the most important node/ vertices in a network.   
-- **Cluster**: A set of nodes that cluster together within a larger network. They are also known as communities. There can be muliple communities in one network.  The clusters are algorithmically learning groupings of nodes that are are cited by one another.
-- **Gatekeeper**: Find nodes that links disparate parts of the citation network. They tend to be the node or set of nodes that connect different communities.  
-
-### Step 6: Co-citations
-
-Finally, you can also run the function `select_topic_cocites` instead of 
-`select_topic_cites`, as such:
+Then, you can run the corresponding plot by selecting the
+number. You'll need to determine whether the variable should
+be shown as a categorical variable (such as cluster):
 
 ```{r}
-select_topic_cocites(20040, 20050)
+plot_network_category(5)
 ```
 
-Graphics made after calling this data will link any two cases that were 
-both cited by a third case a minimum of 9 different times. This is called
-a co-citation graph (rather than a citation graph). Compare this with the
-citation graph; which one do you think tells a more cohesive or interesting
-story? Can you see different patterns in the two
+Or a numeric one (such as the eigenvalue centrality):
+
+```{r}
+plot_network_numeric(2)
+```
 
 
 
