@@ -316,11 +316,12 @@ load_csv <- function() {
   vol$gr <- graph_data(edges, nodes, directed = FALSE)
 }
 
-see_plots <- function() {
+list_plots <- function() {
   if (is.null(vol$gr))
      stop("You need to load data with 'load_csv' before running this function")
   
   noms <- names(vol$gr$nodes[-c(1,2,3)])
+  cat(" ")
   cat(sprintf("%d: %s\n", seq_along(noms), noms))
   
 }
@@ -330,14 +331,15 @@ plot_network_category <- function(num = 1) {
 
   cat(sprintf("Plotting graph using '%s'\n", noms[num])) 
   
-  nodes <- vol$nodes[,c(1,2,3,noms + 3)]
-  names(nodes)[4] <- "label"
-  p <- ggplot(vol$nodes, aes(x, y)) +
-        geom_segment(aes(x = x0, xend = x1, y = y0, yend = y1),
-                     data = vol$edges, size = 0.25, color = grey(0.8)) +
-        geom_point(aes(color = factor(label)), size = 4) +
-        scale_color_viridis(discrete = TRUE) +
-        geom_text(aes(label = YEAR), alpha = 0, size = 4) +
+  nodes <- vol$gr$nodes[,c(1,2,3,num + 3)]
+  names(nodes)[4] <- "value"
+  nodes$label <- sprintf("%s\n%s: %s", nodes$id, noms[num], nodes$value)
+  p <- ggplot(nodes, aes(x, y)) +
+        geom_segment(aes(x = x, xend = xend, y = y, yend = yend),
+                     data = vol$gr$edges, size = 0.25, color = grey(0.8)) +
+        geom_point(aes(color = factor(value)), size = 4) +
+        scale_color_viridis() +
+        geom_text(aes(label = label), alpha = 0, size = 4) +
         theme_void()
 
   plot(p)
@@ -350,14 +352,15 @@ plot_network_numeric <- function(num = 1) {
 
   cat(sprintf("Plotting graph using '%s'\n", noms[num])) 
   
-  nodes <- vol$nodes[,c(1,2,3,noms + 3)]
-  names(nodes)[4] <- "label"
-  p <- ggplot(vol$nodes, aes(x, y)) +
-        geom_segment(aes(x = x0, xend = x1, y = y0, yend = y1),
-                     data = vol$edges, size = 0.25, color = grey(0.8)) +
-        geom_point(aes(color = factor(label)), size = 4) +
-        scale_color_viridis(discrete = TRUE) +
-        geom_text(aes(label = YEAR), alpha = 0, size = 4) +
+  nodes <- vol$gr$nodes[,c(1,2,3,num + 3)]
+  names(nodes)[4] <- "value"
+  nodes$label <- sprintf("%s\n%s: %s", nodes$id, noms[num], nodes$value)
+  p <- ggplot(nodes, aes(x, y)) +
+        geom_segment(aes(x = x, xend = xend, y = y, yend = yend),
+                     data = vol$gr$edges, size = 0.25, color = grey(0.8)) +
+        geom_point(aes(color = as.numeric(value)), size = 4) +
+        scale_color_viridis() +
+        geom_text(aes(label = label), alpha = 0, size = 4) +
         theme_void()
 
   plot(p)
