@@ -305,6 +305,26 @@ graph_data <- function(edges, nodes = NULL, nodes2 = NULL,
 }
 
 load_csv <- function() {
+  if (!require("igraph", quietly = TRUE, warn.conflicts = FALSE)) {
+    stop("Please download the igraph package")
+  }
+  if (!require("dplyr", quietly = TRUE, warn.conflicts = FALSE)) {
+    stop("Please download the dplyr package")
+  }
+  if (!require("readr", quietly = TRUE, warn.conflicts = FALSE)) {
+    stop("Please download the readr package")
+  }
+  if (!require("plotly", quietly = TRUE, warn.conflicts = FALSE)) {
+    stop("Please download the plotly package")
+  }
+  if (!require("viridis", quietly = TRUE, warn.conflicts = FALSE)) {
+    stop("Please download the viridis package")
+  }
+  if (!require("stringi", quietly = TRUE, warn.conflicts = FALSE)) {
+    stop("Please download the viridis package")
+  }
+  
+  
   if (!file.exists("nodes.csv"))
     stop("Cannot find file 'nodes.csv'; did you name it correctly and set the working directory?")
   if (!file.exists("edges.csv"))
