@@ -356,7 +356,6 @@ plot_network_category <- function(num = 1) {
         geom_segment(aes(x = x, xend = xend, y = y, yend = yend),
                      data = vol$gr$edges, size = 0.25, color = grey(0.8)) +
         geom_point(aes(color = factor(value)), size = 4) +
-        scale_color_viridis() +
         geom_text(aes(label = label), alpha = 0, size = 4) +
         theme_void()
 
