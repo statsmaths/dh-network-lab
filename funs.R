@@ -304,7 +304,7 @@ graph_data <- function(edges, nodes = NULL, nodes2 = NULL,
   list(nodes = node_out, edges = edge_out)
 }
 
-load_csv <_ function() {
+load_csv <- function() {
   if (!file.exists("nodes.csv"))
     stop("Cannot find file 'nodes.csv'; did you name it correctly and set the working directory?")
   if (!file.exists("edges.csv"))
